@@ -1,9 +1,205 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lead Management Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background-color: #f4f6f9;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 230px;
+            height: 100vh;
+            background: #1e293b;
+            color: #fff;
+            position: fixed;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #38bdf8;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+        }
+
+        .sidebar a:hover {
+            background: #334155;
+            color: #fff;
+        }
+
+        /* Main content */
+        .main {
+            margin-left: 230px;
+            padding: 30px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #1e293b;
+        }
+
+        /* Stats cards */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            margin: 0;
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        .card h2 {
+            margin-top: 10px;
+            font-size: 32px;
+            color: #0f172a;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        table th, table td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        table th {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        table tr:hover {
+            background: #f8fafc;
+        }
+
+        .status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .new { background: #dbeafe; color: #1d4ed8; }
+        .contacted { background: #dcfce7; color: #166534; }
+        .lost { background: #fee2e2; color: #991b1b; }
+
+    </style>
+</head>
 <body>
 
-<h1>Hello World!</h1>
-<p>Welcome to my first Django project! Venkatesh</p>
+<!-- Sidebar -->
+<div class="sidebar">
+    <h2>LeadManager</h2>
+    <a href="#">Dashboard</a>
+    <a href="#">Leads</a>
+    <a href="#">Add Lead</a>
+    <a href="#">Reports</a>
+    <a href="#">Users</a>
+    <a href="#">Settings</a>
+</div>
+
+<!-- Main content -->
+<div class="main">
+
+    <div class="header">
+        <h1>Dashboard</h1>
+        <p>Welcome, <strong>Venkatesh</strong></p>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="card">
+            <h3>Total Leads</h3>
+            <h2>1,250</h2>
+        </div>
+        <div class="card">
+            <h3>New Leads</h3>
+            <h2>320</h2>
+        </div>
+        <div class="card">
+            <h3>Converted</h3>
+            <h2>540</h2>
+        </div>
+        <div class="card">
+            <h3>Lost</h3>
+            <h2>390</h2>
+        </div>
+    </div>
+
+    <!-- Leads Table -->
+    <h2>Recent Leads</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Source</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Rohit Sharma</td>
+                <td>rohit@email.com</td>
+                <td>Website</td>
+                <td><span class="status new">New</span></td>
+            </tr>
+            <tr>
+                <td>Anjali Verma</td>
+                <td>anjali@email.com</td>
+                <td>Facebook</td>
+                <td><span class="status contacted">Contacted</span></td>
+            </tr>
+            <tr>
+                <td>Suresh Kumar</td>
+                <td>suresh@email.com</td>
+                <td>Referral</td>
+                <td><span class="status lost">Lost</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
 
 </body>
 </html>
