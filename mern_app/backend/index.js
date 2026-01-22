@@ -1,48 +1,40 @@
+// backend/index.js
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const User = require('./models/User');
 const cors = require('cors');
+const dotenv = require('dotenv');
 
+// Load environment variables from .env
+dotenv.config();
 
+const User = require('./models/User');
 const userRoutes = require('./routes/user');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// const expressLayouts = require('express-ejs-layouts');
-
-
-// app.set('view engine', 'ejs');
-// Enable layouts
-// app.use(expressLayouts);          
-// app.set('layout', 'layout');
 app.use(cors({
-  origin: ["http://localhost:5173"],
+  origin: ["http://localhost:5173"], // Frontend URL
   credentials: true,
 }));
-
 app.use(express.json());
-
-// app.use(express.urlencoded({ extended: true }));
-// app.get('/', (req, res) => {
-//     res.send('Hello World');
-// });
 
 // Routes
 app.use('/users', userRoutes);
 app.get('/', async (req, res) => {
     const users = await User.find();
-    res.render('index', { users });
+    // If you are not using EJS anymore, send JSON
+    res.json(users); // changed from res.render
 });
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/mydb')
+// Connect to MongoDB using environment variable
+mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error(err));
+    .catch(err => console.error('MongoDB connection error:', err));
 
 // Start server
 app.listen(PORT, () => {
