@@ -1,5 +1,5 @@
-# Use Node.js 18
-FROM node:18
+# Use Node.js 20
+FROM node:20-alpine
 
 # Set working directory
 WORKDIR /usr/src/app
@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 3000
 
 # Start the app
-CMD ["nodemon", "index.js"]
+CMD ["node", "index.js"]
